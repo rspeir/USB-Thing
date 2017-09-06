@@ -7,8 +7,8 @@ Clone the repo and open the .ebp file in [Embitz] to compile.
 ___
 
 **Todo:**
-* Clean up code so as to be less embarrassing
-* Makefile for non-Embitz users
+- [ ] Clean up code so as to be less embarrassing
+- [ ] Generate Makefile for non-Embitz users
 
 [Embitz]: <http://embitz.org>
 
