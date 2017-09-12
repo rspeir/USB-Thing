@@ -267,6 +267,7 @@ inline void USB_SetupDevice()
         break;
 
     default:
+        DBG(0, "\nUNEXPECTED DEVICE SETUP REQUEST. FIX THIS!");
         break;
      }
 }
@@ -306,6 +307,14 @@ inline void USB_SetupInterface()
         USB_WriteEP(0, NULL, 0);
         DBG(0, "\nInterface set interface requested. Not implemented. ZLP sent.");
         break;
+    case USB_REQUEST_SET_CONFIGURATION:
+        USB_WriteEP(0, NULL, 0);
+        DBG(0, "\nInterface set configuration requested. Not implemented. ZLP sent.");
+        break;
+    default:
+        USB_WriteEP(0, NULL, 0);
+        DBG(0, "\nUNEXPECTED INFERFACE SETUP REQUEST. ZLP SENT.");
+        break;
     }
 
 }
@@ -329,6 +338,8 @@ inline void USB_SetupEndpoint()
     case USB_REQUEST_SYNC_FRAME:
         DBG(0, "\nEndpoint sync frame requested. Not implemented.");
         break;
+    default:
+        DBG(0, "\nUNEXPECTED ENDPOINT SETUP REQUEST. FIX THIS!");
     }
 }
 
@@ -405,13 +416,13 @@ inline void USB_CTR(uint16_t epid)
 
             switch(sp.bmRequestType.bits.recipient)
             {
-            case TO_DEVICE:
+            case REQUEST_TO_DEVICE:
                 USB_SetupDevice();
                 break;
-            case TO_INTERFACE:
+            case REQUEST_TO_INTERFACE:
                 USB_SetupInterface();
                 break;
-            case TO_ENDPOINT:
+            case REQUEST_TO_ENDPOINT:
                 USB_SetupEndpoint();
                 break;
             default:

@@ -49,7 +49,7 @@ const USB_INTERFACE_DESCRIPTOR id =
     0x04,       // descriptor type is interface descriptor
     0x00,       // interface ID number is 0
     0x00,       // no alternate setting
-    0x02,       // 2 endpoints in addition to endpoint 0
+    0x01,       // 1 endpoint in addition to endpoint 0
     0x03,       // interface class is HID
     0x00,       // interface subclass
     0x00,       // interface protocol

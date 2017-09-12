@@ -31,36 +31,17 @@ typedef union {
 #define REQUEST_HOST_TO_DEVICE     0
 #define REQUEST_DEVICE_TO_HOST     1
 
-typedef enum {
-    HOST_TO_DEVICE = 0,
-    DEVICE_TO_HOST = 1
-} REQUEST_DIRECTION;
-
 // bmRequestType.bits.type
 #define REQUEST_STANDARD           0
 #define REQUEST_CLASS              1
 #define REQUEST_VENDOR             2
 #define REQUEST_RESERVED           3
 
-typedef enum {
-    STANDARD = 0,
-    CLASS    = 1,
-    VENDOR   = 2,
-    RESERVED = 3
-} REQUEST_TYPE_ENUM;
-
 // bmRequestType.bits.recipient
 #define REQUEST_TO_DEVICE          0
 #define REQUEST_TO_INTERFACE       1
 #define REQUEST_TO_ENDPOINT        2
 #define REQUEST_TO_OTHER           3
-
-typedef enum {
-    TO_DEVICE    = 0,
-    TO_INTERFACE = 1,
-    TO_ENDPOINT  = 2,
-    TO_OTHER     = 3
-} REQUEST_RECIPIENT;
 
 /* bmRequestType Definition */
 typedef union _REQUEST_TYPE {
@@ -84,20 +65,6 @@ typedef union _REQUEST_TYPE {
 #define USB_REQUEST_GET_INTERFACE              10
 #define USB_REQUEST_SET_INTERFACE              11
 #define USB_REQUEST_SYNC_FRAME                 12
-
-typedef enum {
-    GET_STATUS        = 0,
-    CLEAR_FEATURE     = 1,
-    SET_FEATURE       = 3,
-    SET_ADDRESS       = 5,
-    GET_DESCRIPTOR    = 6,
-    SET_DESCRIPTOR    = 7,
-    GET_CONFIGURATION = 8,
-    SET_CONFIGURATION = 9,
-    GET_INTERFACE     = 10,
-    SET_INTERFACE     = 11,
-    SYNC_FRAME        = 12
-} USB_REQUEST;
 
 /* USB GET_STATUS Bit Values */
 #define USB_GETSTATUS_SELF_POWERED             0x01
@@ -192,19 +159,6 @@ typedef struct _USB_DEVICE_DESCRIPTOR {
     uint8_t  bNumConfigurations;
 } __attribute__((packed)) USB_DEVICE_DESCRIPTOR;
 
-/* USB 2.0 Device Qualifier Descriptor */
-typedef struct _USB_DEVICE_QUALIFIER_DESCRIPTOR {
-    uint8_t   bLength;
-    uint8_t   bDescriptorType;
-    uint16_t  bcdUSB;
-    uint8_t   bDeviceClass;
-    uint8_t   bDeviceSubClass;
-    uint8_t   bDeviceProtocol;
-    uint8_t   bMaxPacketSize0;
-    uint8_t   bNumConfigurations;
-    uint8_t   bReserved;
-} __attribute__((packed)) USB_DEVICE_QUALIFIER_DESCRIPTOR;
-
 /* USB Standard Configuration Descriptor */
 typedef struct _USB_CONFIGURATION_DESCRIPTOR {
     uint8_t   bLength;
@@ -263,7 +217,6 @@ typedef struct _USB_QUALIFIER_DESCRIPTOR {
 } __attribute((packed)) USB_QUALIFIER_DESCRIPTOR;
 
 
-
 typedef struct _USB_CONFIG_DESCRIPTOR_FULL {
     USB_CONFIGURATION_DESCRIPTOR cd;
     USB_INTERFACE_DESCRIPTOR id;
@@ -273,14 +226,12 @@ typedef struct _USB_CONFIG_DESCRIPTOR_FULL {
 } __attribute__((packed)) USB_CONFIG_DESCRIPTOR_FULL;
 
 
-
 /* USB String Descriptor */
 typedef struct _USB_STRING_DESCRIPTOR {
     uint8_t   bLength;
     uint8_t   bDescriptorType;
     uint16_t  bString[];
 } __attribute__((packed)) USB_STRING_DESCRIPTOR;
-
 
 
 
